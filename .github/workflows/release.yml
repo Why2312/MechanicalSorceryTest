@@ -51,14 +51,8 @@ jobs:
         }
         EOF
 
-    - name: Package modpack
-      run: |
-        # Replace spaces with underscores in the zip file name
-        ZIP_FILE_NAME="MechanicalSorcery.zip"
-        zip -r "MechanicalSorcery.sip" modpack
-
     - name: Upload modpack artifact
       uses: actions/upload-artifact@v2
       with:
-        name: "MechanicalSorcery.zip"
-        path: "modpack/MechanicalSorcery.zip"
+        name: "Mechanical Sorcery"
+        path: "modpack"
