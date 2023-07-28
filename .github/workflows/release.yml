@@ -61,4 +61,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: "MechanicalSorcery.zip"
-        path: "MechanicalSorcery.zip"
+        path: "modpack/MechanicalSorcery.zip"
