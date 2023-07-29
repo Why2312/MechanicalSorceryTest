@@ -20,10 +20,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Download HBM
+      id: download
+      run: |
+        # Replace "URL_TO_YOUR_MOD_FILE" with the actual download link of the mod you want to include
+        curl -JLO "https://github.com/TheOriginalGolem/Hbm-s-Nuclear-Tech-GIT/releases/download/hbm-1.8.3a-G/hbm-1.8.3a-G.jar"
+        mv "$(ls -1 | grep -E '.*\.(jar|zip|rar|tar\.gz)$')" "modpack/mods/"
+
     - name: Copy files to modpack directory
       run: |
-        mkdir modpack
-        cp -r mods config scripts modpack/
+        mkdir -p modpack/mods
+        cp -r mods config scripts modpack/mods/
         echo "overrides" > modpack/overrides
 
     - name: Create manifest.json
@@ -46,7 +53,12 @@ jobs:
           "name": "Mechanical Sorcery",
           "version": "$RELEASE_VERSION",
           "author": "Compec Someoneidk 0mori Nibiru",
-          "files": [],
+          "files": [
+            {
+              "projectID": 123, // Replace with the actual project ID of the mod on the hosting platform
+              "fileID": 456    // Replace with the actual file ID of the mod on the hosting platform
+            }
+          ],
           "overrides": "overrides"
         }
         EOF
